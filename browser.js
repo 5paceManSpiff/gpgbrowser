@@ -2,7 +2,7 @@ var jsb = require('jsb');
 var pkg = require('./package.json');
 
 jsb.onReady = function(win, ipc) {
-  win.loadUrl('file://' + __dirname + '/browser.html');
+  win.loadUrl('file://' + __dirname + '/index.html');
 
   return '';
 };
