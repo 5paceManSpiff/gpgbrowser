@@ -1,2 +1,39 @@
-<script>console.log('first load')</script>
-<webview src="http://breach.cc" autosize="on"></webview>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.0/p5.min.js"></script>
+</head>
+<style>
+body {
+  margin: 0;
+}
+
+.top {
+  width: 100%;
+  height: 50px;
+  background-color: #303030;
+}
+
+#view {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+</style>
+<div class="top">
+</div>
+
+<webview id="view" src="http://breach.cc" autosize="on"></webview>
+
+<script>
+var view = document.getElementById('view');
+
+function setup() {
+  noCanvas();
+  view.style.height = windowHeight - 50;
+  view.style.width = windowWidth;
+}
+
+function windowResized() {
+  view.style.height = windowHeight - 50;
+  view.style.width = windowWidth;
+}
+</script>
