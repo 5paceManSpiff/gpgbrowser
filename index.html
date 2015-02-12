@@ -4,12 +4,55 @@
 <style>
 body {
   margin: 0;
+  overflow: hidden;
 }
 
-.top {
+#navbar {
   width: 100%;
   height: 50px;
   background-color: #303030;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: flex-start;
+  padding-left: 10px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.item {
+  color: white;
+  align-self: stretch;
+  display: inline;
+  line-height: 50px;
+  padding: 5px;
+}
+
+.item:hover {
+  background-color: white;
+  color: #303030;
+}
+
+.item:active {
+  background-color: #303030;
+  color: white;
+}
+
+#urlbar {
+  margin-left: 10px;
+  border: none;
+  background-color: #303030;
+  padding: 0;
+  height: 50px;
+  width: 300px;
+  color: white;
+}
+
+#urlbar:focus {
+  outline: none;
 }
 
 #view {
@@ -18,22 +61,45 @@ body {
   height: auto;
 }
 </style>
-<div class="top">
+<div id="navbar">
+  <div id="back" class="item">back</div>
+  <div id="forward" class="item">forward</div>
+  <div id="reload" class="item">reload</div>
+  <input id="urlbar" class="item" type="text" placeholder="urlbar">
+  <div id="go" class="item">go</div>
 </div>
 
 <webview id="view" src="http://breach.cc" autosize="on"></webview>
 
 <script>
+// setup vars
 var view = document.getElementById('view');
+var back = document.getElementById('back');
+var forward = document.getElementById('forward');
+var reload = document.getElementById('reload');
+var urlbar = document.getElementById('urlbar');
+var go = document.getElementById('go');
 
+// setup navigation click callbacks
+back.onclick = function() { view.goBack() };
+forward.onclick = function() { view.goForward() };
+reload.onclick = function() { view.reload() };
+go.onclick = function() { view.src = urlbar.value };
+
+// setup finish load event listener
+view.addEventListener('did-stop-loading', function() {
+  urlbar.value = view.getUrl();
+});
+
+// setup javascript view resizing
 function setup() {
   noCanvas();
-  view.style.height = windowHeight - 50;
+  view.style.height = windowHeight - 55;
   view.style.width = windowWidth;
 }
 
 function windowResized() {
-  view.style.height = windowHeight - 50;
+  view.style.height = windowHeight - 55;
   view.style.width = windowWidth;
 }
 </script>
