@@ -15,7 +15,6 @@
     "jsb": "git://github.com/5paceManSpiff/jsb"
   },
   "jsb": {
-    "show": true,
     "debug": true
   }
 }
