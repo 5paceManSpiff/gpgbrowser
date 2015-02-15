@@ -1,13 +1,19 @@
 var exec = require('child_process').exec;
 var jsb = require('jsb');
 var pkg = require('./package.json');
-
-var execute = function(command, callback) {
-    exec(command, function(error, stdout, stderr){ callback(stdout); });
-};
+var recipients = [];
 
 jsb.onReady = function(win, ipc) {
   win.loadUrl('file://' + __dirname + '/index.html');
+
+  ipc.on('recipients', function(e) {
+    exec('gpg --list-public-keys | grep @ | cut -d "<" -f 2 | cut -d ">" -f 1', function(error, stdout, stderr) {
+      recipients = stdout.split('\n');
+      recipients.pop();
+      e.returnValue = recipients;
+    });
+  });
+
   return '';
 };
 

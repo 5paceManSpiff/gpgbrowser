@@ -67,7 +67,8 @@ body {
   <div id="reload" class="item">reload</div>
   <input id="urlbar" class="bar item" type="text" placeholder="urlbar">
   <div id="go" class="item">go</div>
-  <input id="emailbar" class="bar item" type="email" placeholder="email">
+  <select id="emaillist" class="bar item">
+  </select>
   <div id="encrypt" class="item">encrypt</div>
 </div>
 
@@ -84,7 +85,15 @@ var reload = document.getElementById('reload');
 var encrypt = document.getElementById('encrypt');
 var urlbar = document.getElementById('urlbar');
 var go = document.getElementById('go');
-var emailbar = document.getElementById('emailbar');
+var emaillist = document.getElementById('emaillist');
+
+// setup recipients list
+var recipients = ipc.sendSync('recipients');
+for (var i = 0; i < recipients.length; i++) {
+  var option = document.createElement('option');
+  option.text = recipients[i];
+  emaillist.add(option);
+}
 
 // setup navigation click callbacks
 back.onclick = function() { view.goBack() };
@@ -102,7 +111,7 @@ view.addEventListener('did-stop-loading', function() {
 view.addEventListener('console-message', function(e) {
   var start = '&&&start&&&';
   if (e.message.substring(0, start.length) == start) {
-    ipc.send('plaintext', e.message, emailbar.value);
+    ipc.send('plaintext', e.message, emaillist.value);
   }
 });
 
