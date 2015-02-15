@@ -2,6 +2,10 @@
 
 A fork of my project [`browser`](https://github.com/5paceManSpiff/browser), a reference implementation of the [`jsb`](https://github.com/5paceManSpiff/jsb) framework.  gpgbrowser implements a super hacky wrapper for the gpg command line interface, with the hope of inspiring others to contribute native browser encryption features like this in a less crappy way.
 
+![demo gif](https://github.com/5paceManSpiff/gpgbrowser/raw/master/demo.gif)
+
+Just select your recipient's email address from the dropdown window, highlight the desired plaintext and hit encrypt!
+
 ##### dependencies
 
 - atom-shell
