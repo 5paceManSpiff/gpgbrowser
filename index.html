@@ -41,7 +41,7 @@ body {
   color: white;
 }
 
-#urlbar {
+.bar {
   margin-left: 10px;
   border: none;
   background-color: #303030;
@@ -51,7 +51,7 @@ body {
   color: white;
 }
 
-#urlbar:focus {
+.bar:focus {
   outline: none;
 }
 
@@ -65,30 +65,56 @@ body {
   <div id="back" class="item">back</div>
   <div id="forward" class="item">forward</div>
   <div id="reload" class="item">reload</div>
-  <input id="urlbar" class="item" type="text" placeholder="urlbar">
+  <input id="urlbar" class="bar item" type="text" placeholder="urlbar">
   <div id="go" class="item">go</div>
+  <input id="emailbar" class="bar item" type="email" placeholder="email">
+  <div id="encrypt" class="item">encrypt</div>
 </div>
 
-<webview id="view" src="http://breach.cc" autosize="on"></webview>
+<webview id="view" src="https://facebook.com" autosize="on" disablewebsecurity></webview>
 
 <script>
 // setup vars
+var ipc = require('ipc');
+
 var view = document.getElementById('view');
 var back = document.getElementById('back');
 var forward = document.getElementById('forward');
 var reload = document.getElementById('reload');
+var encrypt = document.getElementById('encrypt');
 var urlbar = document.getElementById('urlbar');
 var go = document.getElementById('go');
+var emailbar = document.getElementById('emailbar');
 
 // setup navigation click callbacks
 back.onclick = function() { view.goBack() };
 forward.onclick = function() { view.goForward() };
 reload.onclick = function() { view.reload() };
+encrypt.onclick = function() { view.executeJavaScript('console.log("&&&start&&&" + window.getSelection().toString())') };
 go.onclick = function() { view.src = urlbar.value };
 
 // setup finish load event listener
 view.addEventListener('did-stop-loading', function() {
   urlbar.value = view.getUrl();
+});
+
+// setup console-message listener
+view.addEventListener('console-message', function(e) {
+  var start = '&&&start&&&';
+  if (e.message.substring(0, start.length) == start) {
+    ipc.send('plaintext', e.message, emailbar.value);
+  }
+});
+
+// setup encrypted ipc listener
+var accept = false;
+ipc.on('encrypted', function(msg, email) {
+  if (accept) {
+    view.replace(msg);
+    accept = false;
+  } else {
+    accept = true;
+  }
 });
 
 // setup javascript view resizing

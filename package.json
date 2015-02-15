@@ -1,15 +1,15 @@
 {
-  "name": "browser",
+  "name": "gpgbrowser",
   "version": "0.0.0",
   "main": "browser.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/5paceManSpiff/browser.git"
+    "url": "https://github.com/5paceManSpiff/gpgbrowser.git"
   },
   "author": "Aaron Landis",
   "license": "GPL",
   "bugs": {
-    "url": "https://github.com/5paceManSpiff/browser/issues"
+    "url": "https://github.com/5paceManSpiff/gpgbrowser/issues"
   },
   "dependencies": {
     "jsb": "git://github.com/5paceManSpiff/jsb"
