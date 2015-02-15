@@ -1,16 +1,17 @@
-### browser
+### gpgbrowser
 
-A test implementation of the [`jsb`](https://github.com/5paceManSpiff/jsb) framework.
+A fork of my project [`browser`](https://github.com/5paceManSpiff/browser), a reference implementation of the [`jsb`](https://github.com/5paceManSpiff/jsb) framework.  gpgbrowser implements a super hacky wrapper for the gpg command line interface, with the hope of inspiring others to contribute native browser encryption features like this in a less crappy way.
 
 ##### dependencies
 
 - atom-shell
 - jsb
+- gpg command line interface with a couple imported public keys
 
 ##### installation
 
-`git clone https://github.com/5paceManSpiff/browser`<br>
-`cd browser`<br>
+`git clone https://github.com/5paceManSpiff/gpgbrowser`<br>
+`cd gpgbrowser`<br>
 `npm install`<br>
 
 ##### execution
