@@ -20,5 +20,5 @@ A fork of my project [`browser`](https://github.com/5paceManSpiff/browser), a re
 
 ##### usage
 
-Just input the recipient email into the `email` text field, highlight text in a text box and hit encrypt.
+Just select recipient email from the list of recipients, highlight text in a text box and hit encrypt.
 If all goes well your selected text should be replaced with it's encrypted counterpart!
