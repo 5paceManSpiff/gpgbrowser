@@ -12,6 +12,7 @@
     "url": "https://github.com/5paceManSpiff/gpgbrowser/issues"
   },
   "dependencies": {
+    "gpgwrap": "git://github.com/5paceManSpiff/gpgwrap",
     "jsb": "git://github.com/5paceManSpiff/jsb"
   },
   "jsb": {

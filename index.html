@@ -89,9 +89,10 @@ var emaillist = document.getElementById('emaillist');
 
 // setup recipients list
 var recipients = ipc.sendSync('recipients');
+console.log(recipients);
 for (var i = 0; i < recipients.length; i++) {
   var option = document.createElement('option');
-  option.text = recipients[i];
+  option.text = recipients[i].email;
   emaillist.add(option);
 }
 
