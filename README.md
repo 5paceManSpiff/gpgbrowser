@@ -1,6 +1,8 @@
 ### gpgbrowser
 
-A fork of my project [`browser`](https://github.com/5paceManSpiff/browser), a reference implementation of the [`jsb`](https://github.com/5paceManSpiff/jsb) framework.  gpgbrowser implements a super hacky wrapper for the gpg command line interface, with the hope of inspiring others to contribute native browser encryption features like this in a less crappy way.
+This project is no longer maintained, but I think it's a neat idea, so I'm keeping it up on github.
+
+This project uses the Node.js library `atom-shell` (now known as `electron`) to create a browser window with a custom chrome. The chrome has an interface to encrypt highlighted text using public keys created by the user. I wrote a Node.js wrapper, [`gpgwrap`](https://github.com/alspore/gpgwrap), around the gpg cli to expose this functionality to Node.js.
 
 ![demo gif](https://github.com/5paceManSpiff/gpgbrowser/raw/master/demo.gif)
 
